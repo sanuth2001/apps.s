@@ -72,15 +72,21 @@ body {
 }
 
 @media (max-width: 768px) {
+
+  html,
   body {
-    overflow-y: auto !important;
-    /* Force window scroll on mobile */
+    overflow: visible !important;
+    /* Full reset for mobile scrolling */
     height: auto !important;
+    min-height: 100dvh;
+    width: 100% !important;
+    /* Avoid 100vw scroll issues */
+    position: relative;
+    overscroll-behavior: auto !important;
   }
 
   html {
     scroll-snap-type: none !important;
-    /* Disable jumpy scroll-snap on mobile */
     scroll-behavior: smooth;
   }
 }
@@ -137,9 +143,11 @@ button {
   .section {
     height: auto !important;
     min-height: 100dvh;
-    overflow-y: visible !important;
-    padding: 80px 16px 140px !important;
-    /* Extra large bottom padding for button */
+    display: block !important;
+    /* Switch from flex to block for standard scrolling */
+    overflow: visible !important;
+    padding: 60px 20px 140px !important;
+    scroll-snap-align: none !important;
   }
 }
 
