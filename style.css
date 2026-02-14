@@ -73,14 +73,15 @@ body {
 
 @media (max-width: 768px) {
   body {
-    overflow-y: auto;
-    /* Allow window scroll on mobile */
-    height: auto;
+    overflow-y: auto !important;
+    /* Force window scroll on mobile */
+    height: auto !important;
   }
 
   html {
-    scroll-snap-type: y proximity;
-    /* Better for tall mobile sections */
+    scroll-snap-type: none !important;
+    /* Disable jumpy scroll-snap on mobile */
+    scroll-behavior: smooth;
   }
 }
 
@@ -134,12 +135,11 @@ button {
 
 @media (max-width: 768px) {
   .section {
-    height: auto;
+    height: auto !important;
     min-height: 100dvh;
-    overflow-y: visible;
-    /* Use window scroll */
-    padding: 60px 20px 100px;
-    /* Extra bottom padding for button */
+    overflow-y: visible !important;
+    padding: 80px 16px 140px !important;
+    /* Extra large bottom padding for button */
   }
 }
 
@@ -400,8 +400,11 @@ button {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 30px;
+  margin: 30px auto 0;
+  /* Center horizontally */
   padding: 0;
+  flex-shrink: 0;
+  /* Don't squash on small screens */
 }
 
 .next-section-btn:hover {
