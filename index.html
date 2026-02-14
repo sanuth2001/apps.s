@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You 💌</title>
+  <meta name="description" content="A special surprise just for you. Open it and see what's inside your heart." />
+
+  <!-- Favicon (heart emoji as SVG data URI) -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       MUSIC TOGGLE (fixed, floating)
+  ═══════════════════════════════════════════════ -->
+  <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
+    <span class="music-icon">🎵</span>
+    <span class="music-label">Play</span>
+  </button>
+
+  <!-- Background music – royalty-free romantic piano (user can replace src) -->
+  <audio id="bg-music" loop preload="auto">
+    <!-- Replace the src below with your own romantic instrumental MP3 -->
+    <source src="assets/violingirl.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 1 — LANDING
+  ═══════════════════════════════════════════════ -->
+  <section id="landing" class="section landing">
+    <!-- Floating hearts background -->
+    <div class="floating-hearts" aria-hidden="true"></div>
+
+    <div class="landing-content">
+      <p class="landing-subtitle">I made something special...</p>
+      <h1 class="landing-title">Hey… I made something for you <span class="emoji-bounce">💌</span></h1>
+      <button id="open-heart-btn" class="btn-primary pulse">
+        Open My Heart <span>❤️</span>
+      </button>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 2 — TYPEWRITER LOVE MESSAGE
+  ═══════════════════════════════════════════════ -->
+  <section id="message" class="section message-section">
+    <div class="container">
+      <div class="message-wrapper">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <p id="typewriter" class="typewriter-text"></p>
+        <div class="cursor-blink" id="cursor">|</div>
+      </div>
+      <!-- Navigation Button -->
+      <button class="next-section-btn hidden" id="nav-to-reasons" aria-label="Next Section">
+        <span class="scroll-arrow"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 3 — REASONS I LIKE YOU
+  ═══════════════════════════════════════════════ -->
+  <section id="reasons" class="section reasons-section">
+    <div class="container">
+      <h2 class="section-title reveal">Things I adore about you</h2>
+      <div class="cards-grid">
+
+        <div class="glass-card card-smile reveal" style="--delay: 0.1s">
+          <img src="assets/smile.jpg" alt="" class="card-bg-image" />
+          <div class="card-overlay"></div>
+          <div class="card-inner">
+            <div class="card-emoji">😊</div>
+            <h3>Your Smile</h3>
+            <p>It lights up every room you walk into, and honestly, it lights up my whole day.</p>
+          </div>
+        </div>
+
+        <div class="glass-card card-smile reveal" style="--delay: 0.25s">
+          <img src="assets/kindness.jpg" alt="" class="card-bg-image" />
+          <div class="card-overlay"></div>
+          <div class="card-inner">
+            <div class="card-emoji">💛</div>
+            <h3>Your Kindness</h3>
+            <p>The way you care about everyone around you makes me fall for you even more.</p>
+          </div>
+        </div>
+
+        <div class="glass-card card-smile reveal" style="--delay: 0.4s">
+          <img src="assets/talk.png" alt="" class="card-bg-image" />
+          <div class="card-overlay"></div>
+          <div class="card-inner">
+            <div class="card-emoji">🗣️</div>
+            <h3>The Way You Talk</h3>
+            <p>The sound of your voice is my favorite melody. I could listen to you speak for hours and still want
+              more--it soothes and excites me at the same time.</p>
+          </div>
+        </div>
+
+        <div class="glass-card card-smile reveal" style="--delay: 0.55s">
+          <img src="assets/nervous.jpg" alt="" class="card-bg-image" />
+          <div class="card-overlay"></div>
+          <div class="card-inner">
+            <div class="card-emoji">😅</div>
+            <h3>The Way You Make Me Nervous</h3>
+            <p>My heart races in rhythms I can't explain... it stumbles, it soars, and it feels alive in ways words
+              can't capture.</p>
+          </div>
+        </div>
+
+      </div>
+      <!-- Navigation Button -->
+      <button class="next-section-btn" id="nav-to-game" aria-label="Next Section">
+        <span class="scroll-arrow"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 4 — HEART CATCHING GAME
+  ═══════════════════════════════════════════════ -->
+  <section id="game" class="section game-section">
+    <div class="container">
+      <h2 class="section-title reveal">Catch My Hearts! 💕</h2>
+      <p class="game-subtitle reveal">Click the falling hearts -- catch 10 to unlock a surprise!</p>
+
+      <div class="game-hud reveal">
+        <span class="score-label">Score:</span>
+        <span id="score" class="score-value">0</span>
+        <span class="score-target">/ 10</span>
+      </div>
+
+      <div id="game-area" class="game-area reveal">
+        <div class="game-placeholder">
+          <button id="start-game-btn" class="btn-primary">Start Game 🎮</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       GAME WIN MODAL
+  ═══════════════════════════════════════════════ -->
+  <div id="game-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-hearts" aria-hidden="true">💖💖💖</div>
+      <h2 id="modal-title">You caught my heart ❤️</h2>
+      <p class="modal-question">Will you be my Valentine?</p>
+      <div class="modal-buttons">
+        <button id="btn-yes" class="btn-yes">YES 💕</button>
+        <button id="btn-no" class="btn-no">Think Again 😅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 5 — FINAL DECLARATION
+  ═══════════════════════════════════════════════ -->
+  <section id="final" class="section final-section">
+    <div class="container">
+      <h2 class="final-text reveal">
+        So... will you be my Valentine? <span class="heart-glow">❤️</span>
+      </h2>
+      <p class="final-sub reveal">Every moment with you feels like magic ✨</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       YES CELEBRATION OVERLAY (hidden by default)
+  ═══════════════════════════════════════════════ -->
+  <div id="celebration" class="celebration-overlay hidden">
+    <div class="celebration-content">
+      <h1 class="celebration-title">🎉 YAAAY! 🎉</h1>
+      <p class="celebration-message">You just made me the happiest person alive 💖</p>
+      <p class="celebration-sub">Happy Valentine's Day, my Valentine! 🌹</p>
+
+      <div class="final-proposal">
+        <h2 class="final-question">Will you be my last love forever?</h2>
+        <div class="final-buttons">
+          <button id="final-yes" class="btn-yes pulse-btn">YES 💕</button>
+          <button id="final-no" class="btn-no dodging-btn">Think Again 😅</button>
+        </div>
+      </div>
+    </div>
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
