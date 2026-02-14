@@ -75,14 +75,16 @@ body {
 
   html,
   body {
-    overflow: visible !important;
-    /* Full reset for mobile scrolling */
+    overflow: auto !important;
+    /* Absolute reset for mobile scrolling */
     height: auto !important;
     min-height: 100dvh;
     width: 100% !important;
     /* Avoid 100vw scroll issues */
     position: relative;
     overscroll-behavior: auto !important;
+    touch-action: pan-y !important;
+    /* Force native vertical scrolling */
   }
 
   html {
@@ -144,10 +146,12 @@ button {
     height: auto !important;
     min-height: 100dvh;
     display: block !important;
-    /* Switch from flex to block for standard scrolling */
+    /* Standard block layout for height consistency */
     overflow: visible !important;
-    padding: 60px 20px 140px !important;
+    padding: 80px 16px 160px !important;
+    /* Maximum breathing room */
     scroll-snap-align: none !important;
+    touch-action: pan-y !important;
   }
 }
 
