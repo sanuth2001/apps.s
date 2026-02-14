@@ -63,14 +63,25 @@ body {
   font-family: var(--font-body);
   color: var(--white);
   overflow: hidden;
-  /* Disable page scroll */
+  /* Desktop remains fixed */
   background: var(--dark);
   height: 100vh;
   height: 100dvh;
-  /* Dynamic viewport height */
   width: 100vw;
   overscroll-behavior: none;
-  /* Prevent bounce */
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    /* Allow window scroll on mobile */
+    height: auto;
+  }
+
+  html {
+    scroll-snap-type: y proximity;
+    /* Better for tall mobile sections */
+  }
 }
 
 .container {
@@ -106,24 +117,30 @@ button {
 .section {
   height: 100vh;
   height: 100dvh;
-  /* Dynamic viewport height */
   width: 100%;
   scroll-snap-align: start;
-  /* Snap to start */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* safer for overflow on mobile */
   position: relative;
   padding: var(--section-padding);
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
   scrollbar-width: none;
-  /* Firefox */
   -ms-overflow-style: none;
-  /* IE/Edge */
+}
+
+@media (max-width: 768px) {
+  .section {
+    height: auto;
+    min-height: 100dvh;
+    overflow-y: visible;
+    /* Use window scroll */
+    padding: 60px 20px 100px;
+    /* Extra bottom padding for button */
+  }
 }
 
 .section::-webkit-scrollbar {
@@ -133,6 +150,14 @@ button {
 /* Center content if it fits (using margin auto on container) */
 .section>.container {
   margin: auto;
+}
+
+@media (max-width: 768px) {
+  .section>.container {
+    margin: 0 auto;
+    /* Remove vertical margin auto on mobile */
+    width: 100%;
+  }
 }
 
 .section-title {
